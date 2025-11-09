@@ -190,63 +190,67 @@
 
     <div id="message">💬 Awaiting your move...</div>
   </div>
+<script>
+  const button = document.getElementById("login-btn");
+  const box = document.querySelector(".login-box");
+  const message = document.getElementById("message");
+  const buttonBg = document.querySelector(".button-bg");
 
-  <script>
-    const button = document.getElementById("login-btn");
-    const box = document.querySelector(".login-box");
-    const message = document.getElementById("message");
-    const buttonBg = document.querySelector(".button-bg");
+  const taunts = [
+    "😆 Haha, missed me!",
+    "⚡ Too slow, human!",
+    "🤖 My AI reflexes are superior!",
+    "😂 Try harder, mortal!",
+    "🙃 You’ll never click me!",
+    "😜 Almost had me!",
+    "💨 Dodged again!",
+    "😎 Nice try!"
+  ];
 
-    const taunts = [
-      "😆 Haha, missed me!",
-      "⚡ Too slow, human!",
-      "🤖 My AI reflexes are superior!",
-      "😂 Try harder, mortal!",
-      "🙃 You’ll never click me!",
-      "😜 Almost had me!",
-      "💨 Dodged again!",
-      "😎 Nice try!"
-    ];
+  let moves = 0;
+  let escaped = false;
 
-    let moves = 0;
-    let escaped = false;
+  function moveButton() {
+    moves++;
+    const boxRect = box.getBoundingClientRect();
+    const btnRect = button.getBoundingClientRect();
 
-    function moveButton() {
-      moves++;
-      const boxRect = box.getBoundingClientRect();
-      const btnRect = button.getBoundingClientRect();
+    let newX = Math.random() * (boxRect.width - btnRect.width);
+    let newY = Math.random() * (boxRect.height - btnRect.height - 60);
 
-      let newX = Math.random() * (boxRect.width - btnRect.width);
-      let newY = Math.random() * (boxRect.height - btnRect.height - 60);
-
-      if (moves > 8 && !escaped) {
-        newX = Math.random() * (window.innerWidth - btnRect.width);
-        newY = Math.random() * (window.innerHeight - btnRect.height);
-        button.style.position = "fixed";
-        buttonBg.style.position = "fixed";
-        escaped = true;
-        message.textContent = "😈 I’m free now!";
-      } else {
-        message.textContent = taunts[Math.floor(Math.random() * taunts.length)];
-      }
-
-      const tiltX = Math.random() * 40 - 20;
-      const tiltY = Math.random() * 40 - 20;
-      button.style.transform = `translate(${newX}px, ${newY}px) rotateY(${tiltX}deg) rotateX(${tiltY}deg)`;
-      buttonBg.style.transform = `translate(${newX}px, ${newY}px) scale(1.2)`;
-
-      button.style.transition = `${Math.max(0.05, 0.35 - moves * 0.02)}s ease`;
-      buttonBg.style.transition = `${Math.max(0.05, 0.4 - moves * 0.02)}s ease`;
+    // Increase number of moves before it escapes (was 8, now 15)
+    if (moves > 15 && !escaped) {
+      newX = Math.random() * (window.innerWidth - btnRect.width);
+      newY = Math.random() * (window.innerHeight - btnRect.height);
+      button.style.position = "fixed";
+      buttonBg.style.position = "fixed";
+      escaped = true;
+      message.textContent = "😈 I’m free now!";
+    } else if (!escaped) {
+      message.textContent = taunts[Math.floor(Math.random() * taunts.length)];
     }
 
-    button.addEventListener("mouseover", moveButton);
+    const tiltX = Math.random() * 40 - 20;
+    const tiltY = Math.random() * 40 - 20;
 
-    button.addEventListener("click", () => {
-      message.textContent = `🎉 You actually caught me in ${moves} tries! Respect! 👏`;
-      button.style.background = "linear-gradient(45deg, #ff4b1f, #ff9068)";
-      button.style.boxShadow = "0 8px 30px rgba(255, 100, 80, 0.6)";
-      button.disabled = true;
-    });
-  </script>
+    button.style.transform = `translate(${newX}px, ${newY}px) rotateY(${tiltX}deg) rotateX(${tiltY}deg)`;
+    buttonBg.style.transform = `translate(${newX}px, ${newY}px) scale(1.2)`;
+
+    // Slow down the early movements a bit
+    const speed = Math.max(0.1, 0.4 - moves * 0.015);
+    button.style.transition = `${speed}s ease`;
+    buttonBg.style.transition = `${speed + 0.05}s ease`;
+  }
+
+  button.addEventListener("mouseover", moveButton);
+
+  button.addEventListener("click", () => {
+    message.textContent = `🎉 You actually caught me in ${moves} tries! Respect! 👏`;
+    button.style.background = "linear-gradient(45deg, #ff4b1f, #ff9068)";
+    button.style.boxShadow = "0 8px 30px rgba(255, 100, 80, 0.6)";
+    button.disabled = true;
+  });
+</script>
+
 </body>
 </html>
