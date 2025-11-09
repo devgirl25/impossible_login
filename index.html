@@ -219,16 +219,23 @@
     let newY = Math.random() * (boxRect.height - btnRect.height - 60);
 
     // Increase number of moves before it escapes (was 8, now 15)
-    if (moves > 15 && !escaped) {
-      newX = Math.random() * (window.innerWidth - btnRect.width);
-      newY = Math.random() * (window.innerHeight - btnRect.height);
-      button.style.position = "fixed";
-      buttonBg.style.position = "fixed";
-      escaped = true;
-      message.textContent = "😈 I’m free now!";
-    } else if (!escaped) {
-      message.textContent = taunts[Math.floor(Math.random() * taunts.length)];
-    }
+   if (moves > 15 && !escaped) {
+  // Free move around the screen (but safely within visible area)
+  const safeMargin = 80; // keep button away from edges
+  newX = Math.random() * (window.innerWidth - btnRect.width - safeMargin);
+  newY = Math.random() * (window.innerHeight - btnRect.height - safeMargin);
+
+  newX = Math.max(20, newX);
+  newY = Math.max(20, newY);
+
+  button.style.position = "fixed";
+  buttonBg.style.position = "fixed";
+  escaped = true;
+  message.textContent = "😈 I’m free now!";
+} else if (!escaped) {
+  message.textContent = taunts[Math.floor(Math.random() * taunts.length)];
+}
+
 
     const tiltX = Math.random() * 40 - 20;
     const tiltY = Math.random() * 40 - 20;
