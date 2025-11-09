@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prachi's Impossible LoginPage 🤖</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      font-family: "Poppins", sans-serif;
+      color: #fff;
+    }
+
+    video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      filter: brightness(0.6);
+    }
+
+    .login-box {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+      padding: 40px;
+      width: 320px;
+      text-align: center;
+      position: relative;
+      animation: floatIn 1s ease;
+    }
+
+    @keyframes floatIn {
+      from {
+        transform: translateY(30px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    h2 {
+      font-family: "Orbitron", sans-serif;
+      font-size: 1.6rem;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+      color: #00ffd5;
+      text-shadow: 0 0 15px rgba(0, 255, 213, 0.6);
+    }
+
+    p.subtext {
+      font-size: 0.9rem;
+      color: #ccc;
+      margin-top: 0;
+      margin-bottom: 15px;
+      letter-spacing: 0.5px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 10px;
+      outline: none;
+      font-size: 14px;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      transition: 0.3s ease;
+    }
+
+    input::placeholder {
+      color: #ddd;
+    }
+
+    input:focus {
+      box-shadow: 0 0 10px rgba(0, 255, 213, 0.5);
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .button-container {
+      position: relative;
+      height: 70px;
+      margin-top: 20px;
+      perspective: 1000px;
+    }
+
+    #login-btn {
+      background: linear-gradient(45deg, #00ff88, #00c3ff);
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 10px;
+      cursor: pointer;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%) rotateY(0deg);
+      bottom: 10px;
+      box-shadow: 0 5px 15px rgba(0, 255, 213, 0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      z-index: 2;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    #login-btn:hover {
+      box-shadow: 0 8px 25px rgba(0, 255, 213, 0.7);
+    }
+
+    .button-bg {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background: radial-gradient(circle, rgba(0, 255, 213, 0.25), transparent 70%);
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      filter: blur(10px);
+      z-index: 1;
+    }
+
+    #message {
+      margin-top: 15px;
+      font-weight: 500;
+      min-height: 24px;
+      color: #fff;
+      font-size: 0.95rem;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    }
+
+    /* Optional floating sparkles */
+    .sparkle {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.6);
+      animation: float 10s infinite linear;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) translateX(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-800px) translateX(200px);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <video autoplay muted loop playsinline>
+    <source src="assets/beach.mp4" type="video/mp4" />
+  </video>
+
+  <div class="login-box">
+    <h4>Created by Prachi</h4>
+    <h2>😜Impossible Login</h2>
+    <p class="subtext">Authorized Users Only 🚷</p>
+    <input type="text" placeholder="👤 Enter Username" />
+    <input type="password" placeholder="🔒 Enter Password" />
+
+    <div class="button-container">
+      <div class="button-bg"></div>
+      <button id="login-btn">🚪 Login</button>
+    </div>
+
+    <div id="message">💬 Awaiting your move...</div>
+  </div>
+
+  <script>
+    const button = document.getElementById("login-btn");
+    const box = document.querySelector(".login-box");
+    const message = document.getElementById("message");
+    const buttonBg = document.querySelector(".button-bg");
+
+    const taunts = [
+      "😆 Haha, missed me!",
+      "⚡ Too slow, human!",
+      "🤖 My AI reflexes are superior!",
+      "😂 Try harder, mortal!",
+      "🙃 You’ll never click me!",
+      "😜 Almost had me!",
+      "💨 Dodged again!",
+      "😎 Nice try!"
+    ];
+
+    let moves = 0;
+    let escaped = false;
+
+    function moveButton() {
+      moves++;
+      const boxRect = box.getBoundingClientRect();
+      const btnRect = button.getBoundingClientRect();
+
+      let newX = Math.random() * (boxRect.width - btnRect.width);
+      let newY = Math.random() * (boxRect.height - btnRect.height - 60);
+
+      if (moves > 8 && !escaped) {
+        newX = Math.random() * (window.innerWidth - btnRect.width);
+        newY = Math.random() * (window.innerHeight - btnRect.height);
+        button.style.position = "fixed";
+        buttonBg.style.position = "fixed";
+        escaped = true;
+        message.textContent = "😈 I’m free now!";
+      } else {
+        message.textContent = taunts[Math.floor(Math.random() * taunts.length)];
+      }
+
+      const tiltX = Math.random() * 40 - 20;
+      const tiltY = Math.random() * 40 - 20;
+      button.style.transform = `translate(${newX}px, ${newY}px) rotateY(${tiltX}deg) rotateX(${tiltY}deg)`;
+      buttonBg.style.transform = `translate(${newX}px, ${newY}px) scale(1.2)`;
+
+      button.style.transition = `${Math.max(0.05, 0.35 - moves * 0.02)}s ease`;
+      buttonBg.style.transition = `${Math.max(0.05, 0.4 - moves * 0.02)}s ease`;
+    }
+
+    button.addEventListener("mouseover", moveButton);
+
+    button.addEventListener("click", () => {
+      message.textContent = `🎉 You actually caught me in ${moves} tries! Respect! 👏`;
+      button.style.background = "linear-gradient(45deg, #ff4b1f, #ff9068)";
+      button.style.boxShadow = "0 8px 30px rgba(255, 100, 80, 0.6)";
+      button.disabled = true;
+    });
+  </script>
+</body>
+</html>
