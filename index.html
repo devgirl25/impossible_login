@@ -3,173 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Prachi's Impossible LoginPage 🤖</title>
+  <title>Prachi's Impossible LoginPage😜</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      font-family: "Poppins", sans-serif;
-      color: #fff;
-    }
-
-    video {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -1;
-      filter: brightness(0.6);
-    }
-
-    .login-box {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 20px;
-      box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
-      padding: 40px;
-      width: 320px;
-      text-align: center;
-      position: relative;
-      animation: floatIn 1s ease;
-    }
-
-    @keyframes floatIn {
-      from {
-        transform: translateY(30px);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-
-    h2 {
-      font-family: "Orbitron", sans-serif;
-      font-size: 1.6rem;
-      margin-bottom: 10px;
-      letter-spacing: 1px;
-      color: #00ffd5;
-      text-shadow: 0 0 15px rgba(0, 255, 213, 0.6);
-    }
-
-    p.subtext {
-      font-size: 0.9rem;
-      color: #ccc;
-      margin-top: 0;
-      margin-bottom: 15px;
-      letter-spacing: 0.5px;
-    }
-
-    input {
-      width: 100%;
-      padding: 12px;
-      margin: 8px 0;
-      border: none;
-      border-radius: 10px;
-      outline: none;
-      font-size: 14px;
-      color: #fff;
-      background: rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(10px);
-      transition: 0.3s ease;
-    }
-
-    input::placeholder {
-      color: #ddd;
-    }
-
-    input:focus {
-      box-shadow: 0 0 10px rgba(0, 255, 213, 0.5);
-      background: rgba(255, 255, 255, 0.25);
-    }
-
-    .button-container {
-      position: relative;
-      height: 70px;
-      margin-top: 20px;
-      perspective: 1000px;
-    }
-
-    #login-btn {
-      background: linear-gradient(45deg, #00ff88, #00c3ff);
-      color: white;
-      border: none;
-      padding: 12px 28px;
-      border-radius: 10px;
-      cursor: pointer;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%) rotateY(0deg);
-      bottom: 10px;
-      box-shadow: 0 5px 15px rgba(0, 255, 213, 0.5);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      z-index: 2;
-      font-size: 15px;
-      font-weight: 500;
-    }
-
-    #login-btn:hover {
-      box-shadow: 0 8px 25px rgba(0, 255, 213, 0.7);
-    }
-
-    .button-bg {
-      position: absolute;
-      width: 100px;
-      height: 100px;
-      background: radial-gradient(circle, rgba(0, 255, 213, 0.25), transparent 70%);
-      border-radius: 50%;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      filter: blur(10px);
-      z-index: 1;
-    }
-
-    #message {
-      margin-top: 15px;
-      font-weight: 500;
-      min-height: 24px;
-      color: #fff;
-      font-size: 0.95rem;
-      text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-    }
-
-    /* Optional floating sparkles */
-    .sparkle {
-      position: absolute;
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.6);
-      animation: float 10s infinite linear;
-    }
-
-    @keyframes float {
-      0% {
-        transform: translateY(0) translateX(0);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-800px) translateX(200px);
-        opacity: 0;
-      }
-    }
-  </style>
 </head>
 <body>
   <video autoplay muted loop playsinline>
@@ -196,15 +34,22 @@
   const message = document.getElementById("message");
   const buttonBg = document.querySelector(".button-bg");
 
-  const taunts = [
+  const earlyTaunts = [
     "😆 Haha, missed me!",
     "⚡ Too slow, human!",
-    "🤖 My AI reflexes are superior!",
     "😂 Try harder, mortal!",
-    "🙃 You’ll never click me!",
     "😜 Almost had me!",
-    "💨 Dodged again!",
-    "😎 Nice try!"
+    "😎 Nice try!",
+    "🤖 I calculate your failure in nanoseconds!"
+  ];
+
+  const laterTaunts = [
+    "😈 Getting angry yet?",
+    "😂 You're still trying?",
+    "🙃 I'm uncatchable!",
+    "💫 Even AI gets bored waiting for you.",
+    "😏 Admit defeat already.",
+    "🔥 I'm faster than your WiFi!"
   ];
 
   let moves = 0;
@@ -215,36 +60,59 @@
     const boxRect = box.getBoundingClientRect();
     const btnRect = button.getBoundingClientRect();
 
-    let newX = Math.random() * (boxRect.width - btnRect.width);
-    let newY = Math.random() * (boxRect.height - btnRect.height - 60);
+    let newX, newY;
 
-    // Increase number of moves before it escapes (was 8, now 15)
-   if (moves > 15 && !escaped) {
-  // Free move around the screen (but safely within visible area)
-  const safeMargin = 80; // keep button away from edges
-  newX = Math.random() * (window.innerWidth - btnRect.width - safeMargin);
-  newY = Math.random() * (window.innerHeight - btnRect.height - safeMargin);
+    // 🎯 After 40 moves, let it escape the login box
+    if (moves > 40 && !escaped) {
+      const safeMargin = 80;
+      newX = Math.random() * (window.innerWidth - btnRect.width - safeMargin);
+      newY = Math.random() * (window.innerHeight - btnRect.height - safeMargin);
 
-  newX = Math.max(20, newX);
-  newY = Math.max(20, newY);
+      newX = Math.max(20, newX);
+      newY = Math.max(20, newY);
 
-  button.style.position = "fixed";
-  buttonBg.style.position = "fixed";
-  escaped = true;
-  message.textContent = "😈 I’m free now!";
-} else if (!escaped) {
-  message.textContent = taunts[Math.floor(Math.random() * taunts.length)];
-}
+      button.style.position = "fixed";
+      buttonBg.style.position = "fixed";
+      escaped = true;
+      message.textContent = "😈 I’m free now! You'll never catch me!";
+    } else if (!escaped) {
+      // Normal movement inside the box
+      newX = Math.random() * (boxRect.width - btnRect.width);
+      newY = Math.random() * (boxRect.height - btnRect.height - 60);
 
+      // 💬 Dynamic taunting
+      if (moves < 20) {
+        message.textContent = earlyTaunts[Math.floor(Math.random() * earlyTaunts.length)];
+      } else if (moves < 30) {
+        message.textContent = laterTaunts[Math.floor(Math.random() * laterTaunts.length)];
+      } else if (moves === 30) {
+        message.textContent = "😅 Wait… you think you can win?";
+      } else {
+        message.textContent = "🤣 Nope! Still too slow!";
+      }
+    }
 
-    const tiltX = Math.random() * 40 - 20;
-    const tiltY = Math.random() * 40 - 20;
+    // 🎮 Add some rotation and bounce
+    const tiltX = Math.random() * 60 - 30;
+    const tiltY = Math.random() * 60 - 30;
+    const scale = escaped ? 1.1 : 1 + Math.random() * 0.3;
 
-    button.style.transform = `translate(${newX}px, ${newY}px) rotateY(${tiltX}deg) rotateX(${tiltY}deg)`;
+    // 🌀 Teleport effect after 25 moves
+    if (moves > 25 && Math.random() < 0.3) {
+      newX = Math.random() * window.innerWidth * 0.8;
+      newY = Math.random() * window.innerHeight * 0.8;
+      button.style.transition = "none";
+      setTimeout(() => {
+        button.style.transition = "0.2s ease";
+      }, 100);
+      message.textContent = "💨 Teleporting outta here!";
+    }
+
+    button.style.transform = `translate(${newX}px, ${newY}px) rotateY(${tiltX}deg) rotateX(${tiltY}deg) scale(${scale})`;
     buttonBg.style.transform = `translate(${newX}px, ${newY}px) scale(1.2)`;
 
-    // Slow down the early movements a bit
-    const speed = Math.max(0.1, 0.4 - moves * 0.015);
+    // Speed up the dodging as moves increase (more irritating!)
+    const speed = Math.max(0.05, 0.35 - moves * 0.006);
     button.style.transition = `${speed}s ease`;
     buttonBg.style.transition = `${speed + 0.05}s ease`;
   }
@@ -258,6 +126,7 @@
     button.disabled = true;
   });
 </script>
+
 
 </body>
 </html>
